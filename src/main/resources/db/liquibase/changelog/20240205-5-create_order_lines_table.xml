@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="20240205-5-create_order_line_table" author="blagojsk">
+        <preConditions>
+            <columnExists tableName="orders" columnName="id"/>
+        </preConditions>
+        <createTable tableName="order_lines">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="order_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="smallint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP(6) WITHOUT TIME ZONE" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(255)"/>
+            <column name="last_modified_date" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+        </createTable>
+        <addUniqueConstraint tableName="order_lines" columnNames="order_id,product_id"/>
+        <addForeignKeyConstraint baseTableName="order_lines" baseColumnNames="order_id"
+                                 constraintName="fk_order_lines_order_id" referencedTableName="orders"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="order_lines" baseColumnNames="product_id"
+                                 constraintName="fk_order_lines_product_id" referencedTableName="products"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <include file="classpath:db/liquibase/changelog/20240205-1-create_accounts_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-2-create_customers_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-3-create_products_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-4-create_orders_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-5-create_order_lines_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-6-create_order_follow_ups_table.xml"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:db/liquibase/changelog/20240205-7-load_order_data.xml" relativeToChangelogFile="false"/>
+</databaseChangeLog>
