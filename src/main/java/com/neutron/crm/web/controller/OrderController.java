@@ -32,16 +32,19 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<OrderDTO> getAllOrders() {
+        log.info("Retrieving all orders.");
         return orderService.getAllOrderDTOS();
     }
 
     @RequestMapping(path = "/follow-up", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public FollowUpsDTO getAllFollowUpOrders() {
+        log.info("Retrieving all follow-up orders.");
         return orderFollowUpService.getOrderFollowUpsDTO();
     }
 
     @RequestMapping(path = "/follow-up", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createFollowUpOrder(@RequestParam Long orderId) {
+        log.info("Creating a follow-up for order id: {}", orderId);
         final Optional<Order> optionalOrder = orderService.findById(orderId);
         final Order order = optionalOrder.orElseThrow(EntityNotFoundException::new);
         final OrderFollowUp orderFollowUp = new OrderFollowUp(order.getId(), order);
