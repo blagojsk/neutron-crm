@@ -4,14 +4,14 @@ import com.neutron.crm.model.Order;
 import com.neutron.crm.model.OrderFollowUp;
 import com.neutron.crm.service.OrderFollowUpService;
 import com.neutron.crm.service.OrderService;
+import com.neutron.crm.web.dto.FollowUpsDTO;
 import com.neutron.crm.web.dto.OrderDTO;
-import com.neutron.crm.web.dto.OrderFollowUpsDTO;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +23,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/orders")
 public class OrderController {
 
@@ -35,12 +36,12 @@ public class OrderController {
     }
 
     @RequestMapping(path = "/follow-up", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public OrderFollowUpsDTO getAllFollowUpOrders() {
+    public FollowUpsDTO getAllFollowUpOrders() {
         return orderFollowUpService.getOrderFollowUpsDTO();
     }
 
     @RequestMapping(path = "/follow-up", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createFollowUpOrder(@RequestParam @NotNull Long orderId) {
+    public ResponseEntity<?> createFollowUpOrder(@RequestParam Long orderId) {
         final Optional<Order> optionalOrder = orderService.findById(orderId);
         final Order order = optionalOrder.orElseThrow(EntityNotFoundException::new);
         final OrderFollowUp orderFollowUp = new OrderFollowUp(order.getId(), order);

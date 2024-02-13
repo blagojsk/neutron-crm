@@ -1,10 +1,10 @@
 package com.neutron.crm.service;
 
 import com.neutron.crm.model.OrderFollowUp;
-import com.neutron.crm.web.dto.OrderFollowUpsDTO;
+import com.neutron.crm.web.dto.FollowUpsDTO;
 
 public interface OrderFollowUpService {
-    OrderFollowUpsDTO getOrderFollowUpsDTO();
+    FollowUpsDTO getOrderFollowUpsDTO();
 
     void save(OrderFollowUp orderFollowUp);
 }

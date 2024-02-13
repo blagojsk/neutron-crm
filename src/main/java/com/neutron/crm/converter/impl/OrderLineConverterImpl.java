@@ -17,7 +17,7 @@ public class OrderLineConverterImpl implements OrderLineConverter {
         return orderLines.stream().map(orderLine -> {
             final Product product = orderLine.getProduct();
             final Double orderLinePrice = product.getPrice() * orderLine.getQuantity();
-            return new OrderLineDTO(product.getName(), orderLine.getQuantity(), orderLinePrice);
+            return new OrderLineDTO(orderLine.getId(), product.getName(), orderLine.getQuantity(), orderLinePrice);
         }).toList();
     }
 }
