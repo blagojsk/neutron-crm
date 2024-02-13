@@ -73,7 +73,7 @@ const Orders = () => {
                                             <tr key={line.id}>
                                                 <td>{line.productName}</td>
                                                 <td>{line.quantity}</td>
-                                                <td>{line.price}</td>
+                                                <td>{line.price.toFixed(2)}</td>
                                             </tr>
                                         ))}
                                         </tbody>

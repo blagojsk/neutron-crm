@@ -33,13 +33,13 @@ const FollowUpOrders = () => {
                         <td>{order.productName}</td>
                         <td>{order.date}</td>
                         <td>{order.quantity}</td>
-                        <td>{order.price}</td>
+                        <td>{order.price.toFixed(2)}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             <div>
-                <strong>Grand Total:</strong> {followUpData.totalQuantity} items, ${followUpData.totalPrice}
+                <strong>Grand Total:</strong> {followUpData.totalQuantity} items, ${followUpData.totalPrice.toFixed(2)}
             </div>
         </div>
     );
